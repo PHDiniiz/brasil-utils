@@ -22,22 +22,6 @@ yarn add @phdiniiz/brasil-utils
 
 ## Uso
 
-### Função Inicial
-
-```typescript
-import { start } from '@phdiniiz/brasil-utils';
-
-start();
-```
-
-ou
-
-```typescript
-import start from '@phdiniiz/brasil-utils';
-
-start();
-```
-
 ### Validações Brasileiras
 
 O pacote inclui funções de validação para documentos e telefones brasileiros, sem dependências externas.
