@@ -1,0 +1,47 @@
+{
+  "name": "@phdiniiz/brasil-utils",
+  "version": "0.0.1",
+  "description": "Utilitários gerais para uso em projetos brasileiros",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "brasil-utils",
+    "brazil-utils",
+    "brasil",
+    "brazil",
+    "utils",
+    "utilities",
+    "typescript",
+    "validacao",
+    "utilidades",
+    "validacao-brasileira",
+    "cep",
+    "cpf",
+    "cnpj",
+    "telefone",
+    "celular"
+  ],
+  "author": "@phdiniiz",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^24.12.0"
+  },
+  "engines": {
+    "node": ">=24.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phdiniiz/brasil-utils"
+  }
+}
+
