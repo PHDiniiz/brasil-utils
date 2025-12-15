@@ -254,8 +254,7 @@ pnpm install
 ### Compilar
 
 ```bash
- pnpm run build
- pnpm run start
+pnpm run build
 ```
 
 ### Publicar
