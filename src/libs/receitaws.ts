@@ -1,3 +1,4 @@
+// Para Node.js 18+, fetch e Response são globais. Se usar Node < 18, instale node-fetch e ajuste os imports.
 /**
  * Funções para busca de CNPJ utilizando a API ReceitaWS
  * Documentação: https://receitaws.com.br/
@@ -46,7 +47,7 @@ export async function buscarCNPJ(
 ): Promise<ReceitaWSResponse | null> {
   try {
     // Remove formatação do CNPJ
-    const cleanCNPJ = cnpj.replace(/\D/g, "");
+    const cleanCNPJ = cnpj.replaceAll(/\D/g, "");
     // Valida o formato do CNPJ (14 dígitos)
     if (cleanCNPJ.length !== 14) {
       return null;
