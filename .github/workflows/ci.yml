@@ -16,22 +16,17 @@ jobs:
       - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
-          cache: "pnpm"
-
-      - name: Instalar pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
+          node-version: "20.x"
+          cache: "npm"
 
       - name: Instalar dependências
-        run: pnpm install
+        run: npm install
 
       - name: Build do projeto
-        run: pnpm build
+        run: npm run build
 
       - name: Rodar testes
-        run: pnpm test || echo "Testes falharam"
+        run: npm test || echo "Testes falharam"
 
       - name: Relatório de cobertura (opcional)
         if: always()

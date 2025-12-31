@@ -28,20 +28,11 @@ Utilitários gerais para desenvolvimento no Brasil.
 
 ## Instalação
 
-```bash
-pnpm add @phdiniiz/brasil-utils
-```
-
+ou
 ou
 
 ```bash
 npm install @phdiniiz/brasil-utils
-```
-
-ou
-
-```bash
-yarn add @phdiniiz/brasil-utils
 ```
 
 ## Uso
@@ -327,27 +318,29 @@ try {
 
 ## Desenvolvimento
 
+
 ### Pré-requisitos
 
 - Node.js >= 24.12.0
-- pnpm (recomendado) ou npm/yarn
+- npm (recomendado)
+
 
 ### Instalar dependências
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### Compilar
 
 ```bash
-pnpm run build
+npm run build
 ```
 
 ### Publicar
 
 ```bash
-pnpm run prepublishOnly
+npm run prepublishOnly
 npm publish --access public
 ```
 
