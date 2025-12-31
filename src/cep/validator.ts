@@ -26,10 +26,13 @@
  * ```
  */
 export function validarCEP(cep: string): boolean {
+  // Não pode conter espaços
+  if (/\s/.test(cep)) {
+    return false;
+  }
   // Remove caracteres não numéricos
-  const cleanCEP = cep.replace(/\D/g, '');
-
-  // CEP deve ter exatamente 8 dígitos
-  return cleanCEP.length === 8;
+  const cleanCEP = cep.replaceAll(/\D/g, '');
+  // CEP deve ter exatamente 8 dígitos e ser só números
+  return cleanCEP.length === 8 && /^\d{8}$/.test(cleanCEP);
 }
 

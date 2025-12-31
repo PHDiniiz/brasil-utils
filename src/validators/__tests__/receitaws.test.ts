@@ -1,18 +1,19 @@
-import { buscarCNPJ } from "../../libs/receitaws";
+import { describe, it, expect } from "vitest";
+import { buscarCNPJ } from "../../libs/receitaws.js";
 
-// Teste básico para buscar um CNPJ válido e inválido usando top-level await
-
-// CNPJ válido
-const cnpjValido = "27865757000102";
-const empresa = await buscarCNPJ(cnpjValido);
-console.log("CNPJ válido:", empresa);
-
-// CNPJ inexistente
-const cnpjInexistente = "00000000000000";
-const empresa2 = await buscarCNPJ(cnpjInexistente);
-console.log("CNPJ inexistente:", empresa2);
-
-// CNPJ inválido
-const cnpjInvalido = "12345";
-const empresa3 = await buscarCNPJ(cnpjInvalido);
-console.log("CNPJ inválido:", empresa3);
+describe("buscarCNPJ (ReceitaWS)", () => {
+  it.skip("busca CNPJ válido (real API)", async () => {
+    const empresa = await buscarCNPJ("27865757000102");
+    expect(empresa).toBeTruthy();
+    expect(empresa?.nome).toBeTypeOf("string");
+    expect(empresa?.status).toBe("OK");
+  });
+  it.skip("retorna null para CNPJ inexistente (real API)", async () => {
+    const empresa = await buscarCNPJ("00000000000000");
+    expect(empresa).toBeNull();
+  });
+  it("retorna null para CNPJ com formato inválido", async () => {
+    const empresa = await buscarCNPJ("12345");
+    expect(empresa).toBeNull();
+  });
+});

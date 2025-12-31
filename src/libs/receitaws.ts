@@ -54,7 +54,9 @@ export async function buscarCNPJ(
     }
 
     // Faz requisição para a API ReceitaWS
-    const response = await fetch(`${RECEITAWS_BASE_URL}/${cleanCNPJ}`);
+    const response = await globalThis.fetch(
+      `${RECEITAWS_BASE_URL}/${cleanCNPJ}`
+    );
 
     // Verifica se a requisição foi bem-sucedida
     if (!response.ok) {
