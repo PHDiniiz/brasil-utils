@@ -1,3 +1,27 @@
+# Badges
+
+<!-- Badge de status do CI (ajuste a URL conforme o repositório real) -->
+
+![CI](https://github.com/PHDiniiz/brasil-utils/actions/workflows/ci.yml/badge.svg)
+
+<!-- Badge de cobertura de testes (exemplo com Codecov, ajuste se usar outro serviço) -->
+
+![Codecov](https://codecov.io/gh/PHDiniiz/brasil-utils/branch/master/graph/badge.svg)
+
+## Integração Contínua (CI)
+
+Este pacote utiliza GitHub Actions para rodar testes automáticos a cada push ou pull request na branch master.
+
+O workflow executa:
+
+- Instalação de dependências com pnpm
+- Build do projeto
+- Execução dos testes
+
+O arquivo de configuração está em `.github/workflows/ci.yml`.
+
+**Importante:** O workflow não faz deploy nem publica o pacote automaticamente, apenas executa testes e build.
+
 # @phdiniiz/brasil-utils
 
 Utilitários gerais para desenvolvimento no Brasil.
@@ -31,13 +55,13 @@ O pacote inclui funções de validação para documentos e telefones brasileiros
 Valida um CPF (Cadastro de Pessoa Física) brasileiro.
 
 ```typescript
-import { validarCPF } from '@phdiniiz/brasil-utils';
+import { validarCPF } from "@phdiniiz/brasil-utils";
 
 // Aceita CPF formatado ou apenas números
-validarCPF('123.456.789-09'); // true
-validarCPF('12345678909'); // true
-validarCPF('111.111.111-11'); // false (sequência repetida)
-validarCPF('123.456.789-00'); // false (dígitos verificadores inválidos)
+validarCPF("123.456.789-09"); // true
+validarCPF("12345678909"); // true
+validarCPF("111.111.111-11"); // false (sequência repetida)
+validarCPF("123.456.789-00"); // false (dígitos verificadores inválidos)
 ```
 
 #### Validação de CNPJ
@@ -45,13 +69,13 @@ validarCPF('123.456.789-00'); // false (dígitos verificadores inválidos)
 Valida um CNPJ (Cadastro Nacional de Pessoa Jurídica) brasileiro.
 
 ```typescript
-import { validarCNPJ } from '@phdiniiz/brasil-utils';
+import { validarCNPJ } from "@phdiniiz/brasil-utils";
 
 // Aceita CNPJ formatado ou apenas números
-validarCNPJ('11.222.333/0001-81'); // true
-validarCNPJ('11222333000181'); // true
-validarCNPJ('11.111.111/1111-11'); // false (sequência repetida)
-validarCNPJ('11.222.333/0001-00'); // false (dígitos verificadores inválidos)
+validarCNPJ("11.222.333/0001-81"); // true
+validarCNPJ("11222333000181"); // true
+validarCNPJ("11.111.111/1111-11"); // false (sequência repetida)
+validarCNPJ("11.222.333/0001-00"); // false (dígitos verificadores inválidos)
 ```
 
 #### Validação de Telefone Fixo
@@ -59,13 +83,13 @@ validarCNPJ('11.222.333/0001-00'); // false (dígitos verificadores inválidos)
 Valida um telefone fixo brasileiro (10 dígitos: DDD + 8 dígitos).
 
 ```typescript
-import { validarTelefone } from '@phdiniiz/brasil-utils';
+import { validarTelefone } from "@phdiniiz/brasil-utils";
 
 // Aceita telefone formatado ou apenas números
-validarTelefone('(11) 3456-7890'); // true
-validarTelefone('1134567890'); // true
-validarTelefone('(11) 91234-5678'); // false (celular, não telefone fixo)
-validarTelefone('(10) 3456-7890'); // false (DDD inválido)
+validarTelefone("(11) 3456-7890"); // true
+validarTelefone("1134567890"); // true
+validarTelefone("(11) 91234-5678"); // false (celular, não telefone fixo)
+validarTelefone("(10) 3456-7890"); // false (DDD inválido)
 ```
 
 #### Validação de Celular
@@ -73,14 +97,14 @@ validarTelefone('(10) 3456-7890'); // false (DDD inválido)
 Valida um celular brasileiro (11 dígitos: DDD + 9 dígitos começando com 9).
 
 ```typescript
-import { validarCelular } from '@phdiniiz/brasil-utils';
+import { validarCelular } from "@phdiniiz/brasil-utils";
 
 // Aceita celular formatado ou apenas números
-validarCelular('(11) 91234-5678'); // true
-validarCelular('11912345678'); // true
-validarCelular('(11) 3456-7890'); // false (telefone fixo, não celular)
-validarCelular('(11) 81234-5678'); // false (não começa com 9)
-validarCelular('(10) 91234-5678'); // false (DDD inválido)
+validarCelular("(11) 91234-5678"); // true
+validarCelular("11912345678"); // true
+validarCelular("(11) 3456-7890"); // false (telefone fixo, não celular)
+validarCelular("(11) 81234-5678"); // false (não começa com 9)
+validarCelular("(10) 91234-5678"); // false (DDD inválido)
 ```
 
 #### Importação Combinada
@@ -93,29 +117,85 @@ import {
   validarCNPJ,
   validarTelefone,
   validarCelular,
-} from '@phdiniiz/brasil-utils';
+} from "@phdiniiz/brasil-utils";
 
 // Exemplo de uso em formulário
-const cpf = '123.456.789-09';
-const cnpj = '11.222.333/0001-81';
-const telefone = '(11) 3456-7890';
-const celular = '(11) 91234-5678';
+const cpf = "123.456.789-09";
+const cnpj = "11.222.333/0001-81";
+const telefone = "(11) 3456-7890";
+const celular = "(11) 91234-5678";
 
 if (validarCPF(cpf)) {
-  console.log('CPF válido');
+  console.log("CPF válido");
 }
 
 if (validarCNPJ(cnpj)) {
-  console.log('CNPJ válido');
+  console.log("CNPJ válido");
 }
 
 if (validarTelefone(telefone)) {
-  console.log('Telefone válido');
+  console.log("Telefone válido");
 }
 
 if (validarCelular(celular)) {
-  console.log('Celular válido');
+  console.log("Celular válido");
 }
+```
+
+### Busca de CNPJ (ReceitaWS)
+
+O pacote inclui funções para busca de informações de empresas a partir do CNPJ utilizando a API gratuita do [ReceitaWS](https://receitaws.com.br/), sem dependências externas (usa apenas `fetch` nativo do Node.js 24+).
+
+#### Busca de CNPJ
+
+Busca informações de empresa a partir de um CNPJ.
+
+```typescript
+import { buscarCNPJ } from "@phdiniiz/brasil-utils";
+
+// Busca por CNPJ
+const empresa = await buscarCNPJ("27865757000102");
+
+if (empresa) {
+  console.log(empresa.nome); // "CAIXA ECONOMICA FEDERAL"
+  console.log(empresa.fantasia); // "CAIXA ECONOMICA FEDERAL"
+  // ... outros campos
+} else {
+  console.log("CNPJ não encontrado ou inválido");
+}
+
+// Retorna null se o CNPJ não for encontrado ou tiver formato inválido
+const empresa2 = await buscarCNPJ("00000000000000"); // null
+```
+
+#### Utilitários ReceitaWS
+
+O pacote também exporta utilitários para consulta de status da API ReceitaWS e busca alternativa via proxy:
+
+```typescript
+import {
+  consultarStatusReceitaWS,
+  buscarCNPJProxy,
+} from "@phdiniiz/brasil-utils";
+
+const status = await consultarStatusReceitaWS();
+console.log(status?.status); // "UP", "DOWN" ou "DEGRADED"
+
+const empresaProxy = await buscarCNPJProxy("27865757000102");
+```
+
+#### Tipos TypeScript (ReceitaWS)
+
+O pacote exporta tipos para facilitar o uso com TypeScript:
+
+```typescript
+import type {
+  ReceitaWSResponse,
+  ReceitaWSStatusResponse,
+} from "@phdiniiz/brasil-utils";
+
+const empresa: ReceitaWSResponse | null = await buscarCNPJ("27865757000102");
+const status: ReceitaWSStatusResponse | null = await consultarStatusReceitaWS();
 ```
 
 ### Busca de CEP
@@ -127,13 +207,13 @@ O pacote inclui funções para busca de CEP utilizando a API gratuita do [ViaCEP
 Valida o formato de um CEP brasileiro (8 dígitos).
 
 ```typescript
-import { validarCEP } from '@phdiniiz/brasil-utils';
+import { validarCEP } from "@phdiniiz/brasil-utils";
 
 // Aceita CEP formatado ou apenas números
-validarCEP('01001000'); // true
-validarCEP('01001-000'); // true
-validarCEP('12345'); // false (menos de 8 dígitos)
-validarCEP('123456789'); // false (mais de 8 dígitos)
+validarCEP("01001000"); // true
+validarCEP("01001-000"); // true
+validarCEP("12345"); // false (menos de 8 dígitos)
+validarCEP("123456789"); // false (mais de 8 dígitos)
 ```
 
 #### Busca de CEP
@@ -141,10 +221,10 @@ validarCEP('123456789'); // false (mais de 8 dígitos)
 Busca informações de endereço a partir de um CEP.
 
 ```typescript
-import { buscarCEP } from '@phdiniiz/brasil-utils';
+import { buscarCEP } from "@phdiniiz/brasil-utils";
 
 // Busca por CEP
-const endereco = await buscarCEP('01001000');
+const endereco = await buscarCEP("01001000");
 
 if (endereco) {
   console.log(endereco.logradouro); // "Praça da Sé"
@@ -152,11 +232,11 @@ if (endereco) {
   console.log(endereco.localidade); // "São Paulo"
   console.log(endereco.uf); // "SP"
 } else {
-  console.log('CEP não encontrado');
+  console.log("CEP não encontrado");
 }
 
 // Retorna null se o CEP não for encontrado ou tiver formato inválido
-const endereco2 = await buscarCEP('99999999'); // null
+const endereco2 = await buscarCEP("99999999"); // null
 ```
 
 #### Busca de CEP por Endereço
@@ -164,21 +244,21 @@ const endereco2 = await buscarCEP('99999999'); // null
 Busca CEPs a partir de UF, cidade e logradouro.
 
 ```typescript
-import { buscarCEPPorEndereco } from '@phdiniiz/brasil-utils';
+import { buscarCEPPorEndereco } from "@phdiniiz/brasil-utils";
 
 // Busca por endereço (retorna até 50 resultados)
-const ceps = await buscarCEPPorEndereco('SP', 'São Paulo', 'Praça da Sé');
+const ceps = await buscarCEPPorEndereco("SP", "São Paulo", "Praça da Sé");
 
 if (ceps.length > 0) {
   ceps.forEach((cep) => {
     console.log(`${cep.cep} - ${cep.logradouro}`);
   });
 } else {
-  console.log('Nenhum CEP encontrado');
+  console.log("Nenhum CEP encontrado");
 }
 
 // Retorna array vazio se não encontrar resultados ou parâmetros inválidos
-const ceps2 = await buscarCEPPorEndereco('RS', 'Porto Alegre', 'Domingos');
+const ceps2 = await buscarCEPPorEndereco("RS", "Porto Alegre", "Domingos");
 ```
 
 #### Tipos TypeScript
@@ -186,10 +266,17 @@ const ceps2 = await buscarCEPPorEndereco('RS', 'Porto Alegre', 'Domingos');
 O pacote exporta tipos TypeScript para facilitar o desenvolvimento:
 
 ```typescript
-import type { ViaCEPResponse, ViaCEPSearchResponse } from '@phdiniiz/brasil-utils';
+import type {
+  ViaCEPResponse,
+  ViaCEPSearchResponse,
+} from "@phdiniiz/brasil-utils";
 
-const endereco: ViaCEPResponse | null = await buscarCEP('01001000');
-const resultados: ViaCEPSearchResponse = await buscarCEPPorEndereco('SP', 'São Paulo', 'Rua');
+const endereco: ViaCEPResponse | null = await buscarCEP("01001000");
+const resultados: ViaCEPSearchResponse = await buscarCEPPorEndereco(
+  "SP",
+  "São Paulo",
+  "Rua"
+);
 ```
 
 #### Importação Combinada
@@ -201,10 +288,10 @@ import {
   validarCEP,
   buscarCEP,
   buscarCEPPorEndereco,
-} from '@phdiniiz/brasil-utils';
+} from "@phdiniiz/brasil-utils";
 
 // Exemplo de uso em formulário
-const cep = '01001-000';
+const cep = "01001-000";
 
 if (validarCEP(cep)) {
   const endereco = await buscarCEP(cep);
@@ -219,20 +306,20 @@ if (validarCEP(cep)) {
 Todas as funções de busca tratam erros automaticamente:
 
 ```typescript
-import { buscarCEP } from '@phdiniiz/brasil-utils';
+import { buscarCEP } from "@phdiniiz/brasil-utils";
 
 try {
-  const endereco = await buscarCEP('01001000');
+  const endereco = await buscarCEP("01001000");
   if (endereco) {
     // CEP encontrado
     console.log(endereco);
   } else {
     // CEP não encontrado ou formato inválido
-    console.log('CEP inválido ou não encontrado');
+    console.log("CEP inválido ou não encontrado");
   }
 } catch (error) {
   // Erro de rede (já tratado internamente, retorna null)
-  console.error('Erro ao buscar CEP');
+  console.error("Erro ao buscar CEP");
 }
 ```
 
@@ -279,14 +366,16 @@ brasil-utils/
 │   │       ├── cpf.test.ts
 │   │       ├── cnpj.test.ts
 │   │       └── phone.test.ts
-│   └── cep/              # Funções de CEP
-│       ├── validator.ts   # Validação de formato de CEP
+│   ├── cep/              # Funções de CEP
+│   │   ├── validator.ts   # Validação de formato de CEP
+│   │   ├── types.ts      # Tipos TypeScript
+│   │   ├── index.ts      # Exportações centralizadas
+│   │   └── __tests__/    # Testes unitários
+│   │       ├── validator.test.ts
+│   │       └── viacep.test.ts
+│   └── libs/             # Funções de integração com APIs externas
 │       ├── viacep.ts     # Busca na API ViaCEP
-│       ├── types.ts      # Tipos TypeScript
-│       ├── index.ts      # Exportações centralizadas
-│       └── __tests__/    # Testes unitários
-│           ├── validator.test.ts
-│           └── viacep.test.ts
+│       └── receitaws.ts  # Busca na API ReceitaWS
 ├── dist/                 # Build output (gerado)
 ├── package.json
 ├── tsconfig.json
@@ -296,18 +385,21 @@ brasil-utils/
 ## Formato dos Dados
 
 ### CPF
+
 - **Formato aceito**: Com ou sem formatação (pontos e traços)
 - **Exemplo formatado**: `123.456.789-09`
 - **Exemplo sem formatação**: `12345678909`
 - **Total de dígitos**: 11 (9 dígitos + 2 verificadores)
 
 ### CNPJ
+
 - **Formato aceito**: Com ou sem formatação (pontos, barra e traço)
 - **Exemplo formatado**: `11.222.333/0001-81`
 - **Exemplo sem formatação**: `11222333000181`
 - **Total de dígitos**: 14 (12 dígitos + 2 verificadores)
 
 ### Telefone Fixo
+
 - **Formato aceito**: Com ou sem formatação (parênteses, espaços, traços)
 - **Exemplo formatado**: `(11) 3456-7890`
 - **Exemplo sem formatação**: `1134567890`
@@ -316,6 +408,7 @@ brasil-utils/
 - **Primeiro dígito do número**: Não pode ser 0 ou 1
 
 ### Celular
+
 - **Formato aceito**: Com ou sem formatação (parênteses, espaços, traços)
 - **Exemplo formatado**: `(11) 91234-5678`
 - **Exemplo sem formatação**: `11912345678`
@@ -324,6 +417,7 @@ brasil-utils/
 - **Primeiro dígito do número**: Deve ser 9
 
 ### CEP
+
 - **Formato aceito**: Com ou sem formatação (traços)
 - **Exemplo formatado**: `01001-000`
 - **Exemplo sem formatação**: `01001000`
@@ -334,4 +428,3 @@ brasil-utils/
 ## Licença
 
 MIT
-

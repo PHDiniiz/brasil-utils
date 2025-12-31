@@ -3,24 +3,24 @@
  * Documentação: https://viacep.com.br/
  */
 
-import { validarCEP } from './validator.js';
-import type { ViaCEPResponse, ViaCEPSearchResponse } from './types.js';
+import { validarCEP } from "../cep/validator.js";
+import type { ViaCEPResponse, ViaCEPSearchResponse } from "../cep/types.js";
 
-const VIACEP_BASE_URL = 'https://viacep.com.br/ws';
+const VIACEP_BASE_URL = "https://viacep.com.br/ws";
 
 /**
  * Busca informações de endereço a partir de um CEP utilizando a API ViaCEP.
- * 
+ *
  * Esta função realiza uma consulta à API gratuita do ViaCEP para obter
  * informações completas do endereço correspondente ao CEP informado.
- * 
+ *
  * A função valida o formato do CEP antes de fazer a requisição e trata
  * automaticamente erros de rede e CEPs não encontrados.
- * 
+ *
  * @param {string} cep - CEP a ser consultado (aceita formatado ou apenas números)
  * @returns {Promise<ViaCEPResponse | null>} Promise que resolve com os dados do endereço
  * ou `null` se o CEP não for encontrado, tiver formato inválido ou ocorrer erro na requisição
- * 
+ *
  * @example
  * ```typescript
  * // Busca CEP válido - todos os campos disponíveis
@@ -34,7 +34,7 @@ const VIACEP_BASE_URL = 'https://viacep.com.br/ws';
  *   console.log(endereco.bairro); // "Sé"
  *   console.log(endereco.localidade); // "São Paulo"
  *   console.log(endereco.uf); // "SP"
- *   
+ *
  *   // Informações adicionais
  *   console.log(endereco.estado); // "São Paulo"
  *   console.log(endereco.regiao); // "Sudeste"
@@ -43,16 +43,16 @@ const VIACEP_BASE_URL = 'https://viacep.com.br/ws';
  *   console.log(endereco.ddd); // "11"
  *   console.log(endereco.siafi); // "7107"
  * }
- * 
+ *
  * // CEP não encontrado
  * const endereco2 = await buscarCEP('99999999');
  * // Retorna: null
- * 
+ *
  * // CEP com formato inválido
  * const endereco3 = await buscarCEP('12345');
  * // Retorna: null
  * ```
- * 
+ *
  * @see {@link https://viacep.com.br/} Documentação da API ViaCEP
  */
 export async function buscarCEP(cep: string): Promise<ViaCEPResponse | null> {
@@ -63,7 +63,7 @@ export async function buscarCEP(cep: string): Promise<ViaCEPResponse | null> {
     }
 
     // Remove formatação do CEP
-    const cleanCEP = cep.replace(/\D/g, '');
+    const cleanCEP = cep.replace(/\D/g, "");
 
     // Faz requisição para a API ViaCEP
     const response = await fetch(`${VIACEP_BASE_URL}/${cleanCEP}/json/`);
@@ -91,22 +91,22 @@ export async function buscarCEP(cep: string): Promise<ViaCEPResponse | null> {
 
 /**
  * Busca CEPs a partir de UF, cidade e logradouro utilizando a API ViaCEP.
- * 
+ *
  * Esta função realiza uma busca na API gratuita do ViaCEP para encontrar
  * CEPs que correspondam aos parâmetros informados. Os resultados são ordenados
  * pela proximidade do nome do logradouro.
- * 
+ *
  * A função valida os parâmetros antes de fazer a requisição:
  * - UF deve ter exatamente 2 caracteres
  * - Cidade deve ter no mínimo 3 caracteres
  * - Logradouro deve ter no mínimo 3 caracteres
- * 
+ *
  * @param {string} uf - Unidade Federativa (2 caracteres, ex: "SP", "RJ", "RS")
  * @param {string} cidade - Nome da cidade (mínimo 3 caracteres)
  * @param {string} logradouro - Nome do logradouro (mínimo 3 caracteres)
  * @returns {Promise<ViaCEPSearchResponse>} Promise que resolve com um array de resultados
  * (máximo 50 CEPs) ou array vazio se não encontrar resultados, parâmetros inválidos ou ocorrer erro
- * 
+ *
  * @example
  * ```typescript
  * // Busca por endereço completo - todos os campos disponíveis em cada resultado
@@ -126,24 +126,24 @@ export async function buscarCEP(cep: string): Promise<ViaCEPResponse | null> {
  *     console.log(`SIAFI: ${endereco.siafi}`);
  *   });
  * }
- * 
+ *
  * // Busca parcial (retorna múltiplos resultados)
  * const ceps2 = await buscarCEPPorEndereco('RS', 'Porto Alegre', 'Domingos');
  * // Retorna: Array com todos os logradouros que contenham "Domingos"
- * // Cada item do array contém todos os campos: cep, logradouro, complemento, 
+ * // Cada item do array contém todos os campos: cep, logradouro, complemento,
  * // unidade, bairro, localidade, uf, estado, regiao, ibge, gia, ddd, siafi
- * 
+ *
  * // Parâmetros inválidos
  * const ceps3 = await buscarCEPPorEndereco('S', 'SP', 'Pa');
  * // Retorna: [] (array vazio)
  * ```
- * 
+ *
  * @see {@link https://viacep.com.br/} Documentação da API ViaCEP
  */
 export async function buscarCEPPorEndereco(
   uf: string,
   cidade: string,
-  logradouro: string,
+  logradouro: string
 ): Promise<ViaCEPSearchResponse> {
   try {
     // Valida parâmetros
@@ -166,7 +166,7 @@ export async function buscarCEPPorEndereco(
 
     // Faz requisição para a API ViaCEP
     const response = await fetch(
-      `${VIACEP_BASE_URL}/${encodedUF}/${encodedCidade}/${encodedLogradouro}/json/`,
+      `${VIACEP_BASE_URL}/${encodedUF}/${encodedCidade}/${encodedLogradouro}/json/`
     );
 
     // Verifica se a requisição foi bem-sucedida
@@ -189,4 +189,3 @@ export async function buscarCEPPorEndereco(
     return [];
   }
 }
-

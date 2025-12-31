@@ -1,6 +1,6 @@
 {
   "name": "@phdiniiz/brasil-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilitários gerais para uso em projetos brasileiros",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,14 +33,13 @@
   ],
   "devDependencies": {
     "typescript": "^5.9.3",
-    "@types/node": "^24.12.0"
+    "@types/node": "^22.19.3"
   },
   "engines": {
-    "node": ">=24.12.0"
+    "node": ">=22.19.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/phdiniiz/brasil-utils"
   }
 }
-
