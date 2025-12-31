@@ -1,13 +1,14 @@
 {
   "name": "@phdiniiz/brasil-utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Utilitários gerais para uso em projetos brasileiros",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "pnpm run build"
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "brasil-utils",
@@ -33,7 +34,8 @@
   ],
   "devDependencies": {
     "typescript": "^5.9.3",
-    "@types/node": "^22.19.3"
+    "@types/node": "^22.19.3",
+    "vitest": "^1.0.0"
   },
   "engines": {
     "node": ">=22.19.3"

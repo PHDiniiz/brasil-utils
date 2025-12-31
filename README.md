@@ -318,12 +318,10 @@ try {
 
 ## Desenvolvimento
 
-
 ### Pré-requisitos
 
 - Node.js >= 24.12.0
 - npm (recomendado)
-
 
 ### Instalar dependências
 
